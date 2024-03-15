@@ -3,8 +3,24 @@
 
 @import "bootstrap";
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 black_bg {
   background-color: black;
+}
+
+.montserrat-title {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.montserrat-text {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .z1 {
@@ -196,7 +212,7 @@ i:focus {
   // width: 10rem;
 }
 
-.font-varela-round{
+.font-varela-round {
   font-family: 'Varela Round';
 }
 

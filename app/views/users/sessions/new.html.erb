@@ -7,7 +7,52 @@
 
 <body>
 
-  <div class="flex-column container h-100">
+  <div class="container vh-100">
+
+  
+    <div class="row mb-auto mx-auto" style="width: 90%; margin-top:40%;">
+      <%= image_tag "ingresar.png"%>
+    </div>
+
+    <!--<div class="row mb-auto mt-3 mx-auto">
+      <h1 class="text-center montserrat-title", style="font-size: 2.5rem;">ALQUILAPP</h1>
+    </div>-->
+
+  
+    <div class="row mb-5" style="position: fixed; bottom: 0; width: 100%; display: flex;">
+      <div class="col-10 bg-white rounded-4 mx-auto shadow">
+        <br>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="input-group mb-3 rounded-5 mx-auto" style="width:90%">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "form-control input-group-form"%>
+          </div>
+
+          <div class="input-group mb-3 rounded-5 mx-auto" style="width:90%">
+            <span class="input-group-text" id="basic-addon1"><i desabled class="fa-solid fa-lock"></i></span>
+            <%= f.password_field :password, autocomplete: "new-password", required: true, id:"user_password", class: "form-control input-group-form" %>
+            <span id="eye" class="input-group-text input-group-form" id="basic-addon1"><i class="fa-regular fa-eye"></i></span>
+          </div>
+
+          <br>
+
+          <div class="text-center mx-auto" style="width:90%">
+            <%= f.submit "ingresar", class:"btn montserrat-text rounded-5" %>
+          </div>
+
+          <br>
+
+          <div class="text-center">
+            <p class="montserrat-text" style="font-size:0.8rem"> Aún no tiene una cuenta? <%= render "users/shared/links", class:"montserrat-text" %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!--<div class="flex-column container h-100">
 
     <div class="row mx-auto mt-3" style="width: 30%">
       <%= image_tag "logo.png", class:"col-12" %>
@@ -52,22 +97,15 @@
       </div>
     </div>
 
-  </div>
+  </div>-->
 
 </body>
 
 
 <style>
-  .bg{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(<%= asset_path 'Portada6.jpg' %>);
-    background-position: center center;
-  }
-  .vertical-center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .text-montserrat {
+
+  
+  .montserrat-text {
     color: black;
     shadow: ;
   }
@@ -75,11 +113,7 @@
     color: #3d8582;
   }
   body{
-    background: rgb(255,238,215);
-    background: -moz-linear-gradient(315deg, rgba(255,238,215,1) 0%, rgba(255,216,178,1) 30%, rgba(255,176,98,1) 100%);
-    background: -webkit-linear-gradient(315deg, rgba(255,238,215,1) 0%, rgba(255,216,178,1) 30%, rgba(255,176,98,1) 100%);
-    background: linear-gradient(315deg, rgba(255,238,215,1) 0%, rgba(255,216,178,1) 30%, rgba(255,176,98,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffeed7",endColorstr="#ffb062",GradientType=1);
+    background: #FF914D;
     height: 100vh;
   }
 
@@ -101,30 +135,22 @@
     /* round left corners */
     border-top-left-radius: 50rem;
     border-bottom-left-radius: 50rem;
-    background-color: #ffffff;
-    border-color: #ffffff;
+    background-color: #E6E1E1;
+    border-color: #E6E1E1;
   }
 
   .input-group-form{
     /* round right corners*/
     border-top-right-radius: 50rem;
     border-bottom-right-radius: 50rem;
-    border-color: #ffffff;
+    border-color: #E6E1E1;
+    background-color: #E6E1E1;
   }
 
   .btn {
-    transition: all 0.3s ease-in-out;
-  }
-
-  .btn {
-    width: 150px;
-    border-radius: 50px;
-    background-image: radial-gradient(circle, rgba(255,164,74,1) 0%, rgba(255,185,90,1) 100%);
-    box-shadow: 0 20px 30px -6px rgba(238, 103, 97, 0.5);
-    outline: none;
-    cursor: pointer;
-    border: none;
+    background-color: #FF914D;
     color: white;
+    width: 100%;
   }
 
   .btn:hover {
