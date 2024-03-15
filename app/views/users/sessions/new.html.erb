@@ -1,93 +1,61 @@
-<div class="container w-75 bg-dark rounded shadow">
-  <div class="row align-items-stech">
+<head>
+  <script src="https://kit.fontawesome.com/38e5d75ed7.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+</head>
 
-    <div class="col">
+<body>
 
-      <div class="text-end mt-2">
-        <%= image_tag "logo.png", width: 48%>
-      </div>
+  <div class="flex-column container h-100">
 
-      <h1 class="fw-bold text-center pt-5 ">Alquilapp</h1>
-      <h2 class="fw-bold text-center pt-2"></h2>
-        <br>
-        <br>
-
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-        <div class="field">
-          <%= f.label :Email, class: "form-label mb-4"%><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "form-control" %>
-        </div>
-
-        <br>
-
-        <div class="field">
-          <%= f.label :Contraseña, class: "form-label mb-4" %>
-          <%= f.password_field :password, autocomplete: "new-password", required: true, id:"user_password", class: "form-control" %>
-          <p id="eye">Ver Contraseña <i  class=" fa ">&#xf06e;</i></p>
-        </div>
-
-        <br>
-
-        <div class="d-grid">
-          <%= f.submit "Ingresar", class:"btn btn-warning" %>
-        </div>
-
-      <% end %>
+    <div class="row mx-auto mt-3" style="width: 30%">
+      <%= image_tag "logo.png", class:"col-12" %>
     </div>
-    <div class="my-2 links">
-      <%= render "users/shared/links" %>
-    </div>
-  </div>
-</div>
 
+    <div class="row" style="margin-top: 5rem">
+      <div class="col-10 mx-auto">
 
-<!--
-<div class="container w-75 bg-dark mt-5 rounded shadow">
-  <div class="row align-items-stech">
-    <div class="col bg d-none d-lg-block">
-
-    </div>
-    <div class="col">
-      <div class="text-end">
-
-        <%= image_tag "logo.png", width: 48%>
-      </div>
-
-      <h1 class="fw-bold text-center pt-5 ">Alquilapp</h1>
-      <h2 class="fw-bold text-center pt-2">Personal</h2>
-        <br>
-        <br>
-      <!--Login
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="mb-4">
-          <%= f.label :Email, class: "form-label mb-4"%><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-        </div>
+        <h1 class=" text-title text-center p-4 text-white">Iniciar sesión</h1>
         
         <br>
+        <br>
+          
 
-        <div class="mb-4">
-          <%= f.label :Constraseña, class: "form-label mb-4" %><br />
-          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+          <div class="input-group mb-3 rounded-5 shadow">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "form-control input-group-form"%>
+          </div>
+
+          <br>
+          
+          <div class="input-group mb-3 rounded-5 shadow">
+            <span class="input-group-text" id="basic-addon1"><i desabled class="fa-solid fa-lock"></i></span>
+            <%= f.password_field :password, autocomplete: "new-password", required: true, id:"user_password", class: "form-control input-group-form" %>
+            <span id="eye" class="input-group-text input-group-form" id="basic-addon1"><i class="fa-regular fa-eye"></i></span>
+          </div>
+
+          <br>
+
+          <div class="text-center">
+            <%= f.submit "Ingresar", class:"btn text-montserrat rounded-5" %>
+          </div>
+
+        <% end %>
+
+        <div class="my-2 links text-center">
+          <%= render "users/shared/links" %>
         </div>
 
-        <br>
-        <br>
-
-        <div class="d-grid">
-          <%= f.submit "Log in", class:"btn btn-info"%>
-        </div>
-        
-        <br>
-        <br>        
-      <% end %>
-
-
+      </div>
     </div>
+
   </div>
-</div>
--->
+
+</body>
+
 
 <style>
   .bg{
@@ -99,16 +67,22 @@
     align-items: center;
     justify-content: center;
   }
+  .text-montserrat {
+    color: black;
+    shadow: ;
+  }
   .links{
     color: #3d8582;
   }
   body{
-    background-color: #000000;
-    /* background: linear-gradient(to right, #000000, #505050); */
-    background: linear-gradient(to right, #000000, #9e3c0e);
-    background: linear-gradient(to right, #000000, #cf7f17);
+    background: rgb(255,238,215);
+    background: -moz-linear-gradient(315deg, rgba(255,238,215,1) 0%, rgba(255,216,178,1) 30%, rgba(255,176,98,1) 100%);
+    background: -webkit-linear-gradient(315deg, rgba(255,238,215,1) 0%, rgba(255,216,178,1) 30%, rgba(255,176,98,1) 100%);
+    background: linear-gradient(315deg, rgba(255,238,215,1) 0%, rgba(255,216,178,1) 30%, rgba(255,176,98,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffeed7",endColorstr="#ffb062",GradientType=1);
     height: 100vh;
   }
+
   h1{
     color: #FFFFFF;
   }
@@ -121,6 +95,45 @@
   }
   label{
     color: #FFFFFF;
+  }
+
+  .input-group-text{
+    /* round left corners */
+    border-top-left-radius: 50rem;
+    border-bottom-left-radius: 50rem;
+    background-color: #ffffff;
+    border-color: #ffffff;
+  }
+
+  .input-group-form{
+    /* round right corners*/
+    border-top-right-radius: 50rem;
+    border-bottom-right-radius: 50rem;
+    border-color: #ffffff;
+  }
+
+  .btn {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .btn {
+    width: 150px;
+    border-radius: 50px;
+    background-image: radial-gradient(circle, rgba(255,164,74,1) 0%, rgba(255,185,90,1) 100%);
+    box-shadow: 0 20px 30px -6px rgba(238, 103, 97, 0.5);
+    outline: none;
+    cursor: pointer;
+    border: none;
+    color: white;
+  }
+
+  .btn:hover {
+    transform: translateY(3px);
+    box-shadow: none;
+  }
+
+  .btn:active {
+    opacity: 0.5;
   }
 
 </style>
