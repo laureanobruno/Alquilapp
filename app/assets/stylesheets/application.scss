@@ -5,9 +5,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-black_bg {
-  background-color: black;
-}
 
 .montserrat-title {
   font-family: "Montserrat", sans-serif;
@@ -16,11 +13,30 @@ black_bg {
   font-style: normal;
 }
 
+* {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 .montserrat-text {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+}
+
+.orange {
+  color: #FFA166;
+}
+
+.bg-orange {
+  background-color: #FFA166;
+}
+
+.text-gray {
+  color: #827E7C;
 }
 
 .z1 {
@@ -55,14 +71,6 @@ black_bg {
   background-color: rgb(255, 171, 14);
   color: #818181;
 }
-
-// .overlay-content {
-//   position: relative;
-//   top: 25%;
-//   width: 100%;
-//   text-align: center;
-//   margin-top: 30px;
-// }
 
 .overlay a {
   padding: 8px;
@@ -167,14 +175,6 @@ i:focus {
 }
 
 .map-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-
-.map-top {
   position: fixed;
   top: 0;
   left: 0;
@@ -182,18 +182,20 @@ i:focus {
   z-index: 1;
 }
 
-.map-bottom {
+.footer-menu {
   position: fixed;
-  // border : 5px solid red;
-  bottom: 25px;
-
-  // center
-  left: 50%;
-  transform: translateX(-50%);
-  // red border
-  // border: 10px solid red;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
+  width: 85%;
 
+  background-color: #fff;
+}
+
+.card {
+  /* border color transparent */
+  border-color: transparent;
 }
 
 
@@ -280,8 +282,8 @@ i:focus {
 }
 
 body {
-  // padding: 20px 0;
-  background: #ccc;
+  //background: #FF914D;
+  background: #FFA166;
 }
 
 

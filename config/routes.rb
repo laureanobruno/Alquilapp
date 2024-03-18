@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
   as :user do
     # generate route that recives the id of a auto
-    get 'users', :to => 'users#index', :as => :users_root # Rails 3
+    get 'users/home', :to => 'users#index', :as => :users_root # Rails 3
   end
 
   # get "admins/edit/:id", to: "admins/registrations#edit"

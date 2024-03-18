@@ -1,6 +1,5 @@
-
-<div class="w-100 p-3 d-flex flex-column">
-<h2 class="mt-10vh">Edit <%= resource_name.to_s.humanize %></h2>
+<div class="d-flex flex-column text-center">
+<h2 class="mt-10vh text-center montserrat-title">Editar información</h2>
 
 
 <% if !current_user.is_renting? %>
@@ -8,15 +7,14 @@
   <%= form_for(resource, as: resource_name, url: "/users/edit", html: { method: :put }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
 
-    <%# <% image_tag(@resource.licencia, class:"img-fluid") %>
     <%if resource.licencia.attached? %>
       <label>Licencia Actual</label>
-      <%= image_tag(resource.licencia, width:300, class:"mt-2 align-self-center") %>
+      <%= image_tag(resource.licencia, class:"mt-2 align-self-center w-75") %>
     <%else%>
       <label>     Aun no se ha subido ninguna foto</label>
     <%end%>
 
-    <div class="field">
+    <div class="field mt-2">
         <%= f.label :licencia, "Foto nueva" %><br />
         <%= f.file_field :licencia %>
       </div>
@@ -24,7 +22,7 @@
 
     <div class="field">
         <%= f.label :Email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class:"field-box"  %>
       </div>
 
     <div class="field">
@@ -32,41 +30,41 @@
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> caracteres como mínimo)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", minlength: 6 %>
+        <%= f.password_field :password, autocomplete: "new-password", minlength: 6, class:"field-box"  %>
       </div>
 
   <div class="field">
         <%= f.label "Confirmación de contraseña" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", minlength: 6 %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", minlength: 6, class:"field-box"  %>
       </div>
 
       <div class="field">
         <%= f.label :Nombre %><br />
-        <%= f.text_field :first_name, required: true, minlength: 3, maxlength: 50, size:20 %>
+        <%= f.text_field :first_name, required: true, minlength: 3, maxlength: 50, size:20, class:"field-box"  %>
       </div>
 
       <div class="field">
         <%= f.label :Apellido %><br />
-        <%= f.text_field :last_name, required: true, minlength: 3, maxlength: 50, size:20 %>
+        <%= f.text_field :last_name, required: true, minlength: 3, maxlength: 50, size:20, class:"field-box" %>
       </div>
 
       <div class="field">
         <%= f.label :Numero_de_telefono %><br />
-        <%= f.number_field :phone, required: true, placeholder:"Ej: 2214230649" %>
+        <%= f.number_field :phone, required: true, placeholder:"Ej: 2214230649", class:"field-box" %>
       </div>
 
       <div class="field">
         <%= f.label :fecha_de_nacimiento %><br />
-        <%= f.date_field :birth_date, required: true, id:"datefield", min:'1899-01-01', max:'0-13-13' %>
+        <%= f.date_field :birth_date, required: true, id:"datefield", min:'1899-01-01', max:'0-13-13', class:"field-box"  %>
       </div>
 
       <div class="field">
         <%= f.label :Fecha_de_expiracion_de_la_licencia %><br />
-        <%= f.date_field :license_valid_until, required: true, id:"date_valid_until_lnc", min:'1899-01-01', max:'0-13-13' %>
+        <%= f.date_field :license_valid_until, required: true, id:"date_valid_until_lnc", min:'1899-01-01', max:'0-13-13', class:"field-box"  %>
       </div>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label "Confirma los cambios con tu contraseña actual" %><br />
       <%= f.password_field :current_password, autocomplete: "current-password", required:true %>
     </div>
 
@@ -87,28 +85,36 @@
     <%end%>
 <% end %>
 </div>
+
 <script>
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
 
-   var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = '0' + dd;
-    }
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
 
-    if (mm < 10) {
-      mm = '0' + mm;
-    }
+  today = yyyy + '-' + mm + '-' + dd;
+  var date = document.getElementById("datefield");
+  if (date != null){
+    date.setAttribute("max", today);
+  }
 
-    today = yyyy + '-' + mm + '-' + dd;
-    var date = document.getElementById("datefield");
-    if (date != null){
-      date.setAttribute("max", today);
-    }
+  var date_valid_until_lnc = document.getElementById("date_valid_until_lnc");
+  if (date_valid_until_lnc != null){
+    date_valid_until_lnc.setAttribute("min", today);
+  }
+</script>
 
-    var date_valid_until_lnc = document.getElementById("date_valid_until_lnc");
-    if (date_valid_until_lnc != null){
-      date_valid_until_lnc.setAttribute("min", today);
-    }
-  </script>
+<style>
+  .field-box {
+    border-radius: 5rem;
+    border-color: white;
+    color: white;
+  }
+</style>

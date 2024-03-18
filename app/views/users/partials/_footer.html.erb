@@ -1,35 +1,74 @@
+<body>
+  <div class="footer-menu d-flex justify-content-between shadow rounded-5 mb-3 mx-auto" id="footer">
 
-    <div class="d-flex justify-content-center map-bottom ">
-      <button class= "btn btn-warning rounded-4 fs-3 p-2 text-white floating_btn" id="myCity">📍</button>
-      <%#= link_to "📍", root_path , class: "btn btn-warning rounded-4 fs-3 p-2 text-white floating_btn", id:"myCity" %>
-    </div>
+    <% if !current_user.is_renting? %>
 
-    <script>
+      <span class="col text-center mt-2 mb-2" style="font-size: 1.5rem">
+        <a id="user_icon" class="fa-solid fa-user" href="<%= edit_user_registration_path %>" style= "color: #827E7C"></a>
+      </span>
 
-      function removePartido(city){
-      if(city.includes("Partido de ")){
-        city = city.replace("Partido de ", "");
-      }
-      return city;
+      <span class="col text-center mt-2 mb-2" style="font-size: 1.5rem">
+        <a id="home_icon" class="orange fa-solid fa-house" href="<%= root_path %>" style= "color: #827E7C"></a>
+      </span>
+
+      <span class="col text-center mt-2 mb-2" style="font-size: 1.5rem">
+        <a id="map_icon" class="fa-solid fa-map-location-dot" href="/users/vista_mapa" style= "color: #827E7C"></a>
+      </span>
+    
+    <% else %>
+
+      <span class="col text-center mt-2 mb-2 justify-content-evenly" style="font-size: 1.5rem" onclick="goHome()">
+        <a id="car_icon" class="fa-solid fa-car" style= "color: #827E7C"></a>
+        <a class="text-gray montserrat-title"> Mi alquiler</a>
+      </span>
+
+    <% end %>
+
+  </div>
+</body>
+
+<script>
+
+  let lastScrollTop = 0;
+
+  window.addEventListener("scroll", function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop){
+      footer.style.transition = "opacity 0.2s, transform 0.2s";
+      footer.style.transform = "translateY(100%)";
+      footer.style.opacity = "0";
+    } else {
+      footer.style.transition = "opacity 0.2s, transform 0.2s";
+      footer.style.transform = "translateY(0%)";
+      footer.style.opacity = "1";
     }
-
-        function getCity(lat, lon) {
-      $.ajax({
-        url: "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+lat+"&lon="+lon,
-        type: "GET",
-        success: function(result){
-          document.getElementById("myCity").innerHTML = "📍 " + removePartido(result.address.state_district);
-        }
-      });
-    }
+    lastScrollTop = scrollTop;
+  });
 
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          getCity(position.coords.latitude, position.coords.longitude);
-        });
-      } else {
-        document.getElementById("myCity").innerHTML = "📍 No se pudo ubicar";
-      }
+  var map_icon = document.getElementById("map_icon");
+  var home_icon = document.getElementById("home_icon");
+  var car_icon = document.getElementById("car_icon");
+  var user_icon = document.getElementById("user_icon");
 
-    </script>
+  if (window.location.href.includes("users/edit")) {
+    user_icon.style.color = "#FFA166";
+  } else if (window.location.href.includes("/vista_mapa")) {
+    map_icon.style.color = "#FFA166";
+  } else if (window.location.href.includes("/home")){
+    home_icon.style.color = "#FFA166";
+  }
+
+  function goHome() {
+    window.location.href = "<%= root_path %>";
+  }
+
+
+
+</script>
+
+<style>
+  a {
+    text-decoration: none;
+  }
+</style>

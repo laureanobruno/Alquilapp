@@ -163,7 +163,7 @@ class UsersController < ApplicationController
 
   def finalizar_alquiler
     if user_is_not_renting?
-      redirect_to users_path and return
+      redirect_to root_path and return
     end
 
     @alquiler = Alquiler.find(current_user.alquiler_id)

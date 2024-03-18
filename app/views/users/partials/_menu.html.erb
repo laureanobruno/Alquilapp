@@ -1,3 +1,8 @@
+<head>
+  <script src="https://kit.fontawesome.com/38e5d75ed7.js" crossorigin="anonymous"></script>
+</head>
+
+
 <div id="myNav" class="overlay  d-flex flex-column align-items-center justify-content-between">
 
   <div class="d-flex flex-column border-danger align-items-center justify-content-center mt-5">
@@ -33,17 +38,82 @@
 
 
 <div class="d-flex p-3 justify-content-between map-top d-print-none">
-  <span class="btn btn-warning bien_redondito floating_btn text-white d-flex align-items-center  justify-content-center" onclick="openNav()">&#9776;</span>
 
-  <span class="btn btn-warning rounded-5 p-1 w-50 fs-4 floating_btn text-white d-flex justify-content-center align-items-center">
-    <%= link_to "Alquilapp", root_path, class: "text-white", style:"text-decoration:none" %>
+  <span class="btn bg-white bien_redondito shadow d-flex p-1 d-flex align-items-center justify-content-center">
+      <%= link_to "",  "/wallets/#{current_user.id}", class: "fa-solid fa-wallet", style: "color: #827E7C", id:"wallet_icon" %>
   </span>
 
-  <span class="btn btn-warning bien_redondito floating_btn text-white d-flex p-1 d-flex align-items-center justify-content-center">
-    <% if  request.original_url.include?("vista_mapa") %>
-      <%= link_to "🚗", "/users/", style:"text-decoration:none" %>
+  <span class="bg-white rounded-5 p-1 w-50 fs-4 shadow text-gray d-flex justify-content-evenly align-items-center text-gray montserrat-title">
+    <% if request.path.include? "wallets" %>
+      Mi wallet
+    <% elsif request.path.include? "edit" %>
+      Mi perfil
+    <% elsif request.path.include? "vista_alquiler" %>
+      Mi alquiler
     <% else %>
-      <%= link_to "🗺️", "/users/vista_mapa", style:"text-decoration:none" %>
+      <i class="fa-solid fa-location-dot"></i>
+      <i class= "text-gray montserrat-title" id="myCity", style="text-decoration: none"></i>
     <% end %>
   </span>
+
+
+  <span class="btn bg-white bien_redondito shadow text-gray d-flex p-1 d-flex align-items-center justify-content-center">
+    <% if !current_user.is_renting? %>
+      <%= link_to "", destroy_user_session_path, method: :delete, class:"fa-solid fa-right-from-bracket text-gray mx-auto", style:"text-decoration: none"%>
+    <% else %>
+      <%= link_to "", edit_user_registration_path, class:"fa-solid fa-id-card text-gray mx-auto", style:"text-decoration: none", id:"user_icon"%>
+    <% end %>
+
+  </span>
 </div>
+
+
+<script>
+
+  function destroy_session() {
+    $.ajax({
+      url: "<%= destroy_user_session_path %>",
+      type: "DELETE",
+      success: function(result){
+        // handle success
+      },
+      error: function(error){
+        // handle error
+      }
+    });
+  }
+
+  function removePartido(city){
+    if(city.includes("Partido de ")){
+      city = city.replace("Partido de ", "");
+    }
+    return city;
+  }
+
+  function getCity(lat, lon) {
+    $.ajax({
+      url: "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+lat+"&lon="+lon,
+      type: "GET",
+      success: function(result){
+        document.getElementById("myCity").innerHTML = removePartido(result.address.state_district);
+      }
+    });
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      getCity(position.coords.latitude, position.coords.longitude);
+    });
+  } else {
+    document.getElementById("myCity").innerHTML = "No se pudo ubicar";
+  }
+
+  var wallet_icon = document.getElementById("wallet_icon");
+  var user_icon = document.getElementById("user_icon");
+  if (window.location.href.includes("wallets")) {
+    wallet_icon.style.color = "#FFA166";
+  } else if (window.location.href.includes("users/edit")) {
+    user_icon.style.color = "#FFA166";
+  }
+
+</script>

@@ -51,54 +51,6 @@
 
   </div>
 
-
-  <!--<div class="flex-column container h-100">
-
-    <div class="row mx-auto mt-3" style="width: 30%">
-      <%= image_tag "logo.png", class:"col-12" %>
-    </div>
-
-    <div class="row" style="margin-top: 5rem">
-      <div class="col-10 mx-auto">
-
-        <h1 class=" text-title text-center p-4 text-white">Iniciar sesión</h1>
-        
-        <br>
-        <br>
-          
-
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-          <div class="input-group mb-3 rounded-5 shadow">
-            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "form-control input-group-form"%>
-          </div>
-
-          <br>
-          
-          <div class="input-group mb-3 rounded-5 shadow">
-            <span class="input-group-text" id="basic-addon1"><i desabled class="fa-solid fa-lock"></i></span>
-            <%= f.password_field :password, autocomplete: "new-password", required: true, id:"user_password", class: "form-control input-group-form" %>
-            <span id="eye" class="input-group-text input-group-form" id="basic-addon1"><i class="fa-regular fa-eye"></i></span>
-          </div>
-
-          <br>
-
-          <div class="text-center">
-            <%= f.submit "Ingresar", class:"btn text-montserrat rounded-5" %>
-          </div>
-
-        <% end %>
-
-        <div class="my-2 links text-center">
-          <%= render "users/shared/links" %>
-        </div>
-
-      </div>
-    </div>
-
-  </div>-->
-
 </body>
 
 
@@ -113,7 +65,6 @@
     color: #3d8582;
   }
   body{
-    background: #FF914D;
     height: 100vh;
   }
 
