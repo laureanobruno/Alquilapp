@@ -40,7 +40,7 @@
 
 <body>
 
-  <div class="container bg-grad mx-auto align-items-start rounded-5 shadow mt-12vh" style="width: 90%">
+  <div class="container bg-white mx-auto align-items-start rounded-5 shadow mt-12vh" style="width: 90%">
     <div class="row">
       <div class="col-12">
         <p class="montserrat-text p-1 mt-3">Tu saldo, <strong><%= @wallet.user.first_name%></strong></p>
@@ -51,7 +51,7 @@
         <h1 class="montserrat-title p-2" style="color: black">$ <%= @wallet.saldo.round(2) %></h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row d-flex">
       <div class="col-8">
       </div>
       <div class="col-2 btn boton-wallet shadow d-flex p-1 align-items-center justify-content-center mx-auto">
@@ -62,6 +62,31 @@
       </div>
     </div>
 
+  </div>
+
+  <br>
+
+  <div id="carouselExampleControls" class="carousel slide">
+    <div class="carousel-inner">
+      <% @cards.each_with_index do |card, index| %>
+        <div class="carousel-item <%= index == 0 ? 'active' : 'Aún no cuentas con tarjetas cargadas' %>">
+          <div class="card bg-grad rounded-4 shadow">
+            <div class="card-body">
+              <h5 class="card-title"><%= card.brand %> • <%= card.number %></h5>
+              <p class="card-text"><b><%= card.user.first_name %> <%= card.user.last_name %><b></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 
 </body>
@@ -159,6 +184,14 @@
     height: 2.5rem;
     border-radius: 50%;
     margin-bottom: 1rem;
+  }
+
+  .card {
+    
+    margin: auto;
+    width: 80%;
+    height: 20vh;
+
   }
 </style>
 
