@@ -7,7 +7,7 @@
   <div class="container bg-white mx-auto align-items-start rounded-5 shadow mt-12vh" style="width: 90%">
     <div class="row">
       <div class="col-12">
-        <p class="montserrat-text p-1 mt-3">Tu saldo, <strong><%= @wallet.user.first_name%></strong></p>
+        <p class="montserrat-text p-1 mt-3">Tu saldo, <strong><%= number_with_precision(@wallet.user.first_name, precision: 2, separator: ',', delimiter: '') %></strong></p>
       </div>
     </div>
     <div class="row">
@@ -17,7 +17,7 @@
     </div>
     <div class="row">
       <div type="button" class="btn boton-wallet shadow d-flex p-1 align-items-center justify-content-center" style="margin-right: 1rem; margin-left: auto; margin-bottom: 1rem" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <i class="fa-solid fa-money-bills text-white mx-auto" style="font-size: 1rem"></i>
+        <i class="fa-solid fa-dollar text-white mx-auto" style="font-size: 1rem"></i>
       </div>
     </div>
 
@@ -41,8 +41,9 @@
 
   <div id="carouselExampleControls" class="carousel slide">
     <div class="carousel-inner">
+
       <% @cards.each_with_index do |card, index| %>
-        <div class="carousel-item <%= index == 0 ? 'active' : 'Aún no cuentas con tarjetas cargadas' %>">
+        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
           <div class="card bg-grad rounded-4 shadow" style="width:75%">
             <div class="card-body">
               <div class="row">
@@ -75,7 +76,8 @@
           </div>
         </div>
       <% end %>
-      <div class="carousel-item">
+
+      <div class="carousel-item active">
         <div class="card bg-transparent rounded-4 shadow">
           <a class="card-body d-flex flex-column rounded-4 align-items-center justify-content-center" style="border-style: dashed; border-color: white;" href="/cards/create">
             <p class="card-title text-white bold" style="font-size:large">Agregar una nueva tarjeta</p>
@@ -84,6 +86,7 @@
         </div>
       </div>
     </div>
+
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>

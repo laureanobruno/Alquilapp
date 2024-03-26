@@ -44,7 +44,7 @@ User.destroy_all
 Admin.destroy_all
 Wallet.destroy_all
 
-usuario = User.create(email: "user@gmail.com", first_name: "Lionel", last_name: "Messi", password: "123456",
+usuario = User.create(email: "user@gmail.com", first_name: "Martín", last_name: "López", password: "123456",
     password_confirmation: "123456", status: 0, birth_date: (Date.new(2001, 07, 24)), phone: "1234567890", license_valid_until: (Date.new(2022, 12, 10)))
 usuario.licencia.attach(io: File.open('app/assets/images/licencias/Leo.png'), filename: 'Leo.png', content_type: 'image/png')
 
@@ -82,7 +82,9 @@ end
 
 a = User.find_by(first_name: "Rodrigo")
 wal = Wallet.find_by(user_id: a.id)
-wal.saldo = 1000000
+wal.saldo = 5000
+wal.ultima_carga = 500
+wal.ultimo_gasto = 856
 wal.save
 
 # Alquileres
