@@ -20,11 +20,11 @@
         <%end%>
     <%end%>
          <%= render "users/shared/error_messages", resource: current_user%>
-        <h4 class="p-2 align-self-start">Tu alquiler, <%=current_user.first_name %></h4>
+        <h4 class="mt-3 pb-2 text-center">Tu alquiler, <%=current_user.first_name %></h4>
 
         <div id="liveAlertPlaceholder"></div>
 
-        <a class="card align-self-center text-black shadow" style="width: 16rem; text-decoration: none" href="/users/vehiculo/<%=@auto.id%>">
+        <a class="card align-self-center rounded-5 text-black shadow" style="width: 100%; text-decoration: none" href="/users/vehiculo/<%=@auto.id%>">
             <%if @auto.imagen.attached?%>
                 <%= image_tag(@auto.imagen) %></td>
             <%else%>
@@ -155,8 +155,8 @@
         <%= button_to "Finalizar", "/users/finalizar_alquiler", method: :put, class:"btn btn-danger"%>
         </div>
         <div class="alert alert-danger alert-dismissible fade show p-2 mt-2" role="alert" id="recordatorio${id}">
-                            <strong>¡Recordatorio!</strong>El precio final del alquiler se calcula sobre las horas de reserva, no sobre las horas de uso.
-                        </div>
+            <strong>¡Recordatorio!</strong>El precio final del alquiler se calcula sobre las horas de reserva, no sobre las horas de uso.
+        </div>
     </div>
     </div>
 </div>

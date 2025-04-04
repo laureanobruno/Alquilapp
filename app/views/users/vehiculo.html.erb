@@ -1,100 +1,89 @@
 <div class="mt-11vh">
-    <ul class="carrusel">
-        <%# iterate over each @autos %>
-        <% @autos.each do |a| %>
-            <li class="item-carrusel mostrar mb-3" id="car<%a.id%>">
-                <div class="" >
-                    <div class="p-2">
-                         <%= render "users/shared/error_messages", resource: current_user%>
-                    </div>
-                    <div class="autos d-flex flex-column align-items-center">
-                        <div class="rounded-5 shadow bg-white card container-in" style="width: 20.2rem;">
-                            <h1 class="m-2"><%=a.modelo%> <%=a.anio%></h1>
+    <div class="" >
+        <div class="p-2">
+                <%= render "users/shared/error_messages", resource: current_user%>
+        </div>
+        <div class="autos d-flex flex-column align-items-center">
+            <div class="rounded-5 shadow bg-white card container-in" style="width: 85%">
+                <% a = @auto %>
+                <h1 class="m-2"><%=a.modelo%> <%=a.anio%></h1>
 
-                            <%if a.imagen.attached?%>
-                                <%= image_tag(a.imagen) %></td>
-                            <%else%>
-                                <label>Sin Foto</label>
-                            <%end%>
-                            <div class="mostrar m-3 mb-0">
-                                <div class="container text-center">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label class="card-text">Patente: </label>
-
-                                            <hr class="orange-light-hr">
-                                            <p><%=a.patente%></p>
-                                        </div>
-                                        <div class="col">
-                                            <label class="card-text">Tipo de Caja: </label>
-
-                                            <hr class="orange-light-hr">
-                                            <p><%=a.tipo_de_caja%></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container text-center">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label class="card-text">Combustible: </label>
-                                            <hr class="orange-light-hr">
-                                            <p><%=a.tipo_de_combustible%></p>
-                                        </div>
-                                        <div class="col">
-                                            <label class="card-text">Precio: </label>
-
-                                            <hr class="orange-light-hr">
-                                            <p>$<%=@precio.valor%> /h</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="small_map<%=a.id%>" style="height:15vh; width:100%"></div>
-                        </div>
-                    </div>
-                    <div class= "container mt-1 ">
-
-                    <div class="modal fade" id="exampleModal<%=a.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel<%=a.id%>">Alquilar el <%=a.modelo%></h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <% @alquiler_v = Alquiler.new %>
-                                    <%= form_with model: @alquiler_v, url: "/users/alquilar/#{a.id}", method: :post do |form| %>
-                                    <%= form.label "Fecha de Devolucion", required: true, class:"" %>
-                                    <%= form.date_field :fecha_devolucion, class: "form-control", required: true, id:"datefield#{a.id}", min:'2022-01-01', max:'2022-01-01' %>
-                                    <%= form.label "Hora de Devolucion", required: true, class:"" %>
-                                    <%= form.time_field :hora_devolucion, class: "form-control", required: true, id:"timefield#{a.id}", min:'00:00' %>
-                                    <div id="current_price<%=a.id%>" class="text-success text-center p-3 fs-5"></div>
-                                    <p class="text-center" id="text-confirm<%=a.id%>"></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <%= form.submit "Alquilar", class: "btn btn-success mt-2", id:"btn-yes#{a.id}" %>
-                                </div>
-
-                                <div class="ms-2 me-2" id="recordatorio<%=a.id%>"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <% end %>
-                </div>
-                <%if ! @user.is_renting?%>
-                    <div class="mt-2 d-flex justify-content-center">
-                        <button id="btn-confirm<%=a.id%>" class="btn btn-warning rounded-4 fs-5 p-2 text-white floating_btn" data-bs-toggle="modal" data-bs-target="#exampleModal<%=a.id%>" data-bs-whatever="">Elegir horario</button>
-                    </div>
+                <%if a.imagen.attached?%>
+                    <%= image_tag(a.imagen) %></td>
+                <%else%>
+                    <label>Sin Foto</label>
                 <%end%>
+                <div class="mostrar m-3 mb-0">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col">
+                                <label class="card-text">Patente: </label>
+
+                                <hr class="orange-light-hr">
+                                <p><%=a.patente%></p>
+                            </div>
+                            <div class="col">
+                                <label class="card-text">Tipo de Caja: </label>
+
+                                <hr class="orange-light-hr">
+                                <p><%=a.tipo_de_caja%></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col">
+                                <label class="card-text">Combustible: </label>
+                                <hr class="orange-light-hr">
+                                <p><%=a.tipo_de_combustible%></p>
+                            </div>
+                            <div class="col">
+                                <label class="card-text">Precio: </label>
+
+                                <hr class="orange-light-hr">
+                                <p>$<%=@precio.valor%> /h</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div id="small_map<%=a.id%>" style="height:15vh; width:100%"></div>
+            </div>
+        </div>
+        <div class= "container mt-1 ">
 
-            </li>
+        <div class="modal fade" id="exampleModal<%=a.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel<%=a.id%>">Alquilar el <%=a.modelo%></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <% @alquiler_v = Alquiler.new %>
+                        <%= form_with model: @alquiler_v, url: "/users/alquilar/#{a.id}", method: :post do |form| %>
+                        <%= form.label "Fecha de Devolucion", required: true, class:"" %>
+                        <%= form.date_field :fecha_devolucion, class: "form-control", required: true, id:"datefield#{a.id}", min:'2022-01-01', max:'2022-01-01' %>
+                        <%= form.label "Hora de Devolucion", required: true, class:"" %>
+                        <%= form.time_field :hora_devolucion, class: "form-control", required: true, id:"timefield#{a.id}", min:'00:00' %>
+                        <div id="current_price<%=a.id%>" class="text-success text-center p-3 fs-5"></div>
+                        <p class="text-center" id="text-confirm<%=a.id%>"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <%= form.submit "Alquilar", class: "btn btn-success mt-2", id:"btn-yes#{a.id}" %>
+                    </div>
 
-
-
+                    <div class="ms-2 me-2" id="recordatorio<%=a.id%>"></div>
+                </div>
+            </div>
+        </div>
         <% end %>
-    </ul>
+    </div>
+    <%if ! @user.is_renting?%>
+        <div class="mt-2 d-flex justify-content-center">
+            <button id="btn-confirm<%=a.id%>" class="btn btn-warning rounded-5 text-gray bg-white floating_btn bold" style="border-color: transparent; position: fixed; bottom: 0; margin-bottom: 2rem" data-bs-toggle="modal" data-bs-target="#exampleModal<%=a.id%>" data-bs-whatever="">Elegir horario</button>
+        </div>
+    <%end%>
 
 
 
